@@ -169,9 +169,9 @@
                             <th>Nom</th>
                             <th>Catégorie</th>
                             <th>Prix</th>
-                            <th>Stock</th>
+                            <th>Created-at</th>
+                            <th>Updated-at</th>
                             <th>Status</th>
-                            <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -182,9 +182,9 @@
                             </td>
                             <td><strong>{{$product->name}}</strong></td>
                             <td><span class="badge badge-primary">Plantes</span></td>
-                            <td><strong>{{$product->ptice}} €</strong></td>
-                            <td>12</td>
-                            <td><span class="badge badge-success">En stock</span></td>
+                            <td><strong>{{$product->price}} €</strong></td>
+                            <td>{{$product->created_at}}</td>
+                            <td><span class="badge badge-success">{{$product->updated_at}}</span></td>
                             <td class="table-actions-cell">
                                 <button class="btn btn-icon btn-sm">
                                     <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">

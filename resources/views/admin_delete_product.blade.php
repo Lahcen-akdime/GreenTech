@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create Product - GreenTech Admin</title>
+    <title>Delete Product - GreenTech Admin</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Karla:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -202,164 +202,149 @@
             color: var(--text-mid);
         }
 
-        /* Form Container */
-        .form-container {
-            max-width: 900px;
-            margin: 0 auto;
+        /* Modal Overlay */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(26, 77, 46, 0.6);
+            backdrop-filter: blur(8px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Modal */
+        .modal {
             background: white;
-            padding: 3rem;
             border-radius: 24px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-            border: 1px solid rgba(144, 169, 85, 0.2);
+            padding: 3rem;
+            max-width: 500px;
+            width: 90%;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            border: 2px solid rgba(200, 80, 80, 0.3);
+            animation: slideUp 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
         }
 
-        .form-header {
-            margin-bottom: 2.5rem;
+        @keyframes slideUp {
+            from { 
+                opacity: 0; 
+                transform: translateY(30px) scale(0.95); 
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0) scale(1); 
+            }
         }
 
-        .form-header h2 {
+        .modal-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 2rem;
+            background: linear-gradient(135deg, rgba(200, 80, 80, 0.15), rgba(200, 80, 80, 0.05));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            border: 3px solid rgba(200, 80, 80, 0.3);
+        }
+
+        .modal-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .modal-header h2 {
             font-family: 'DM Serif Display', serif;
             font-size: 2rem;
-            color: var(--forest-green);
-            margin-bottom: 0.5rem;
+            color: #c05050;
+            margin-bottom: 0.75rem;
             font-weight: 400;
         }
 
-        .form-header p {
+        .modal-header p {
             color: var(--text-mid);
             font-size: 1rem;
+            line-height: 1.6;
         }
 
-        /* Form Groups */
-        .product-form {
+        /* Product Info in Modal */
+        .product-preview {
+            background: rgba(200, 80, 80, 0.05);
+            padding: 1.5rem;
+            border-radius: 16px;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(200, 80, 80, 0.2);
+        }
+
+        .product-preview-item {
             display: flex;
-            flex-direction: column;
-            gap: 2rem;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid rgba(200, 80, 80, 0.1);
         }
 
-        .form-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1.5rem;
+        .product-preview-item:last-child {
+            border-bottom: none;
         }
 
-        .form-group {
-            display: flex;
-            flex-direction: column;
-            gap: 0.75rem;
-        }
-
-        .form-group.full-width {
-            grid-column: 1 / -1;
-        }
-
-        .form-group label {
+        .product-preview-label {
             font-weight: 600;
-            color: var(--text-dark);
+            color: var(--text-mid);
             font-size: 0.9rem;
             text-transform: uppercase;
             letter-spacing: 0.05em;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
         }
 
-        .form-group label .required {
-            color: #c05050;
-        }
-
-        .form-group input,
-        .form-group select,
-        .form-group textarea {
-            padding: 1rem 1.25rem;
-            border: 2px solid rgba(144, 169, 85, 0.3);
-            border-radius: 16px;
-            font-family: 'Karla', sans-serif;
-            font-size: 1rem;
-            background: var(--soft-cream);
+        .product-preview-value {
+            font-weight: 600;
             color: var(--text-dark);
-            transition: all 0.3s ease;
-            outline: none;
+            font-size: 1rem;
         }
 
-        .form-group input:focus,
-        .form-group select:focus,
-        .form-group textarea:focus {
-            border-color: var(--moss-green);
-            box-shadow: 0 0 0 4px rgba(79, 119, 45, 0.1);
-            background: white;
-        }
-
-        .form-group textarea {
-            min-height: 150px;
-            resize: vertical;
-        }
-
-        .form-group select {
-            cursor: pointer;
-        }
-
-        /* AI Generate Section */
-        .ai-section {
-            background: linear-gradient(135deg, rgba(144, 169, 85, 0.05), rgba(79, 119, 45, 0.05));
-            padding: 2rem;
-            border-radius: 16px;
-            border: 2px dashed rgba(144, 169, 85, 0.3);
+        /* Warning Box */
+        .warning-box {
+            background: rgba(255, 200, 100, 0.15);
+            border: 2px solid rgba(255, 180, 50, 0.4);
+            border-radius: 12px;
+            padding: 1.25rem;
+            margin-bottom: 2rem;
             display: flex;
-            flex-direction: column;
+            align-items: center;
             gap: 1rem;
-            align-items: center;
-            text-align: center;
         }
 
-        .ai-section h3 {
-            font-family: 'DM Serif Display', serif;
-            font-size: 1.3rem;
-            color: var(--forest-green);
-            font-weight: 400;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
+        .warning-icon {
+            font-size: 2rem;
+            flex-shrink: 0;
         }
 
-        .ai-section p {
-            color: var(--text-mid);
+        .warning-text {
+            color: var(--text-dark);
             font-size: 0.95rem;
-            max-width: 500px;
+            line-height: 1.5;
         }
 
-        .ai-generate-btn {
-            padding: 1rem 2.5rem;
-            background: linear-gradient(135deg, var(--moss-green), var(--sage-green));
-            color: white;
-            border: none;
-            border-radius: 16px;
-            font-family: 'Karla', sans-serif;
-            font-weight: 600;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-        }
-
-        .ai-generate-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 24px rgba(79, 119, 45, 0.4);
-        }
-
-        /* Form Actions */
-        .form-actions {
+        /* Modal Actions */
+        .modal-actions {
             display: flex;
             gap: 1rem;
-            justify-content: flex-end;
-            margin-top: 1rem;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(144, 169, 85, 0.2);
+            justify-content: center;
         }
 
-        .btn {
+        .modal-btn {
             padding: 1rem 2.5rem;
             border: none;
             border-radius: 16px;
@@ -373,25 +358,25 @@
             gap: 0.5rem;
         }
 
-        .btn-primary {
-            background: linear-gradient(135deg, var(--moss-green), var(--sage-green));
-            color: white;
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 24px rgba(79, 119, 45, 0.4);
-        }
-
-        .btn-secondary {
+        .modal-btn-cancel {
             background: white;
             color: var(--text-dark);
             border: 2px solid rgba(144, 169, 85, 0.3);
         }
 
-        .btn-secondary:hover {
+        .modal-btn-cancel:hover {
             background: rgba(144, 169, 85, 0.1);
             border-color: var(--moss-green);
+        }
+
+        .modal-btn-delete {
+            background: linear-gradient(135deg, #c05050, #d06060);
+            color: white;
+        }
+
+        .modal-btn-delete:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(200, 80, 80, 0.4);
         }
 
         /* Responsive */
@@ -414,10 +399,6 @@
                 justify-content: center;
                 padding: 1rem;
             }
-
-            .form-row {
-                grid-template-columns: 1fr;
-            }
         }
 
         @media (max-width: 768px) {
@@ -432,22 +413,22 @@
                 padding: 1rem;
             }
 
-            .form-container {
+            .modal {
                 padding: 2rem 1.5rem;
+            }
+
+            .modal-actions {
+                flex-direction: column;
+            }
+
+            .modal-btn {
+                width: 100%;
+                justify-content: center;
             }
 
             .top-bar {
                 flex-direction: column;
                 gap: 1rem;
-            }
-
-            .form-actions {
-                flex-direction: column;
-            }
-
-            .btn {
-                width: 100%;
-                justify-content: center;
             }
         }
     </style>
@@ -459,7 +440,7 @@
         </div>
         
         <nav class="sidebar-nav">
-            <a href="/home" class="nav-item">
+            <a href="admin-dashboard.html" class="nav-item">
                 <span class="nav-icon">📊</span>
                 <span>Dashboard</span>
             </a>
@@ -483,7 +464,7 @@
 
     <main class="main-content">
         <div class="top-bar">
-            <h1>Create Product</h1>
+            <h1>Products</h1>
             <div class="admin-profile">
                 <div class="admin-avatar">A</div>
                 <div class="admin-info">
@@ -493,108 +474,53 @@
             </div>
         </div>
 
-        <div class="form-container">
-            <div class="form-header">
-                <h2>Edit the Product</h2>
-                <p>Fill in the details to add a sustainable product to your catalog</p>
-            </div>
+        <!-- Modal Overlay -->
+        <div class="modal-overlay">
+            <div class="modal">
+                <div class="modal-icon">⚠️</div>
+                
+                <div class="modal-header">
+                    <h2>Delete Product?</h2>
+                    <p>This action cannot be undone. The product will be permanently removed from your catalog.</p>
+                </div>
 
-            <form class="product-form" method="POST" action="{{ route('update',$theproduct->id) }}">
-                @csrf
-                @method('PUT')
-                <div class="form-row">
-                    <div class="form-group">
-                        <label>
-                            Product Name
-                            <span class="required">*</span>
-                        </label>
-                        <input 
-                            name="name"
-                            type="text" 
-                            placeholder="e.g., Fougère d'Intérieur"
-                            required
-                            value="{{$theproduct->name}}"
-                        >
+                <div class="product-preview">
+                    <div class="product-preview-item">
+                        <span class="product-preview-label">Product Name</span>
+                        <span class="product-preview-value">Fougère d'Intérieur</span>
                     </div>
-
-                    <div class="form-group">
-                        <label>
-                            Price (€)
-                            <span class="required">*</span>
-                        </label>
-                        <input 
-                        name="price"
-                            type="number" 
-                            step="0.01"
-                            placeholder="24.99"
-                            required
-                             value="{{$theproduct->price}}"
-                        >
+                    <div class="product-preview-item">
+                        <span class="product-preview-label">Category</span>
+                        <span class="product-preview-value">Plantes</span>
+                    </div>
+                    <div class="product-preview-item">
+                        <span class="product-preview-label">Price</span>
+                        <span class="product-preview-value">24.99€</span>
+                    </div>
+                    <div class="product-preview-item">
+                        <span class="product-preview-label">Stock</span>
+                        <span class="product-preview-value">42 units</span>
                     </div>
                 </div>
 
-                <div class="form-row">
-                    <div class="form-group">
-                        <label>
-                            Category
-                            <span class="required">*</span>
-                        </label>
-                        <select name="categoryId" required>
-                            <option value="">Select a category</option>
-
-                            @foreach($categories as $category)
-                            <option value="{{$category->id}}">{{$category->title}}</option>
-                            @endforeach
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label>
-                            Stock Quantity
-                            <span class="required">*</span>
-                        </label>
-                        <input 
-                        name="stock"
-                            type="number" 
-                            placeholder="42"
-                            required
-                             value="{{$theproduct->stock}}"
-                        >
+                <div class="warning-box">
+                    <span class="warning-icon">⚠️</span>
+                    <div class="warning-text">
+                        <strong>Warning:</strong> Deleting this product will remove it from all customer views and cannot be recovered.
                     </div>
                 </div>
 
-                <div class="form-group full-width">
-                    <label>
-                        Product Description
-                        <span class="required">*</span>
-                    </label>
-                    <textarea 
-                    name="description"
-                        placeholder="Describe your sustainable product in detail..."
-                        required
-                    >{{$theproduct->description}}</textarea>
-                </div>
-
-                <div class="ai-section">
-                    <h3>✨ AI-Powered Description</h3>
-                    <p>Let our AI help you create compelling, eco-friendly product descriptions that resonate with your customers</p>
-                    <button type="button" class="ai-generate-btn">
-                        <span>🤖</span>
-                        Generate with AI
-                    </button>
-                </div>
-
-                <div class="form-actions">
-                    <a href="/products" type="button" class="btn btn-secondary">
+                <div class="modal-actions">
+                    <button class="modal-btn modal-btn-cancel">
                         <span>✕</span>
                         Cancel
-                    </a>
-                    <button type="submit" class="btn btn-primary">
-                        <span>✓</span>
-                        Save Product
+                    </button>
+                    <button class="modal-btn modal-btn-delete">
+                        <span>🗑️</span>
+                        Delete Product
                     </button>
                 </div>
-            </form>
+            </div>
         </div>
     </main>
 </body>

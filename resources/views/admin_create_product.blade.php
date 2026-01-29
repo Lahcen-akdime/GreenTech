@@ -495,13 +495,12 @@
 
         <div class="form-container">
             <div class="form-header">
-                <h2>Edit the Product</h2>
+                <h2>Add New Product</h2>
                 <p>Fill in the details to add a sustainable product to your catalog</p>
             </div>
 
-            <form class="product-form" method="POST" action="{{ route('update',$theproduct->id) }}">
+            <form class="product-form" method="POST" action="{{ route('store') }}">
                 @csrf
-                @method('PUT')
                 <div class="form-row">
                     <div class="form-group">
                         <label>
@@ -513,7 +512,6 @@
                             type="text" 
                             placeholder="e.g., Fougère d'Intérieur"
                             required
-                            value="{{$theproduct->name}}"
                         >
                     </div>
 
@@ -528,7 +526,6 @@
                             step="0.01"
                             placeholder="24.99"
                             required
-                             value="{{$theproduct->price}}"
                         >
                     </div>
                 </div>
@@ -558,10 +555,22 @@
                             type="number" 
                             placeholder="42"
                             required
-                             value="{{$theproduct->stock}}"
                         >
                     </div>
                 </div>
+
+                <div class="form-group">
+                <label for="image">
+                    Product Image <span class="required"></span>
+                </label>
+                <input 
+                    type="file" 
+                    id="image" 
+                    name="image" 
+                    accept="image/"
+                    required
+                >
+            </div>
 
                 <div class="form-group full-width">
                     <label>
@@ -572,7 +581,7 @@
                     name="description"
                         placeholder="Describe your sustainable product in detail..."
                         required
-                    >{{$theproduct->description}}</textarea>
+                    ></textarea>
                 </div>
 
                 <div class="ai-section">
