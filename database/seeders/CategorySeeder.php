@@ -13,6 +13,7 @@ class CategorySeeder extends Seeder
      */
     public function run(): void
     {
+
     DB::table('categories')->insert(
     ['title' => 'Plantes',
     'created_at' => date("Y-m-d H:i:s"),
@@ -26,6 +27,6 @@ class CategorySeeder extends Seeder
     'created_at' => date("Y-m-d H:i:s"),
     'updated_at' => date("Y-m-d H:i:s")]);
     // Graines 
-    // Outils
+    // Outils   
     }
 }

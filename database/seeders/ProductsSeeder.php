@@ -2,21 +2,20 @@
 
 namespace Database\Seeders;
 
-use App\Models\Products;
-use App\Models\User;
+use App\Models\products;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class DatabaseSeeder extends Seeder
-{
-    use WithoutModelEvents;
+// use app\Models\products ;
 
+class ProductsSeeder extends Seeder
+{
     /**
-     * Seed the application's database.
+     * Run the database seeds.
      */
     public function run(): void
     {
-    //    $this->call([ProductsSeeder::class]);
+     
     }
 }

@@ -6,6 +6,6 @@
     <title>Document</title>
 </head>
 <body>
-    <h1><?= $nom ?></h1>
+ <p>the product : {{$theproduct->name}}</p>   
 </body>
 </html>
