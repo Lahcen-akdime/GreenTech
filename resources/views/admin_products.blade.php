@@ -436,6 +436,218 @@
                 gap: 1rem;
             }
         }
+        .pagination_style {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 3rem 0;
+    gap: 0.5rem;
+}
+
+.pagination_style nav {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.pagination_style ul {
+    display: flex;
+    gap: 0.5rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    align-items: center;
+}
+
+.pagination_style li {
+    margin: 0;
+}
+
+.pagination_style a,
+.pagination_style span {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 2.5rem;
+    height: 2.5rem;
+    padding: 0 0.75rem;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: #64748b;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 0.5rem;
+    text-decoration: none;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    user-select: none;
+}
+
+.pagination_style a:hover {
+    color: #0f172a;
+    background: #f8fafc;
+    border-color: #cbd5e1;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.pagination_style a:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.1);
+}
+
+.pagination_style .active span,
+.pagination_style span[aria-current="page"] {
+    color: #ffffff;
+    background: linear-gradient(180deg, var(--forest-green) 0%, var(--moss-green) 100%);
+    border-color: transparent;
+    font-weight: 600;
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+}
+
+.pagination_style .disabled span,
+.pagination_style span[aria-disabled="true"] {
+    color: #cbd5e1;
+    background: #f8fafc;
+    border-color: #f1f5f9;
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+.pagination_style svg {
+    width: 1.25rem;
+    height: 1.25rem;
+}
+
+/* Previous/Next text links */
+.pagination_style a[rel="prev"],
+.pagination_style a[rel="next"] {
+    gap: 0.5rem;
+    padding: 0 1rem;
+    font-weight: 600;
+}
+
+/* Dots separator */
+.pagination_style .disabled span:not([aria-disabled]) {
+    border: none;
+    background: transparent;
+    color: #94a3b8;
+    cursor: default;
+    min-width: auto;
+    padding: 0 0.25rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+    .pagination_style a,
+    .pagination_style span {
+        min-width: 2.25rem;
+        height: 2.25rem;
+        font-size: 0.875rem;
+        padding: 0 0.5rem;
+    }
+    
+    .pagination_style {
+        gap: 0.25rem;
+    }
+    
+    .pagination_style ul {
+        gap: 0.25rem;
+    }
+}
+/* Search Section */
+.search-section {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    padding: 1.5rem 2rem;
+    border-radius: 20px;
+    margin-bottom: 2rem;
+    border: 1px solid rgba(144, 169, 85, 0.2);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+.search-container {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.search-input-wrapper {
+    flex: 1;
+    position: relative;
+}
+
+.search-icon {
+    position: absolute;
+    left: 1.25rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.2rem;
+    color: var(--text-mid);
+    pointer-events: none;
+}
+
+.search-input {
+    width: 100%;
+    padding: 1rem 1rem 1rem 3.5rem;
+    border: 2px solid rgba(144, 169, 85, 0.3);
+    border-radius: 16px;
+    font-family: 'Karla', sans-serif;
+    font-size: 0.95rem;
+    color: var(--text-dark);
+    background: white;
+    transition: all 0.3s ease;
+    outline: none;
+}
+
+.search-input::placeholder {
+    color: var(--text-mid);
+    opacity: 0.7;
+}
+
+.search-input:focus {
+    border-color: var(--moss-green);
+    box-shadow: 0 0 0 4px rgba(144, 169, 85, 0.1);
+}
+
+.search-btn {
+    padding: 1rem 2rem;
+    background: linear-gradient(135deg, var(--moss-green), var(--sage-green));
+    color: white;
+    border: none;
+    border-radius: 16px;
+    font-family: 'Karla', sans-serif;
+    font-weight: 600;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    white-space: nowrap;
+    min-width: 140px;
+    justify-content: center;
+}
+
+.search-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(79, 119, 45, 0.4);
+}
+
+.search-btn:active {
+    transform: translateY(0);
+}
+
+/* Responsive Search */
+@media (max-width: 768px) {
+    .search-container {
+        flex-direction: column;
+    }
+    
+    .search-btn {
+        width: 100%;
+    }
+}
     </style>
 </head>
 <body>
@@ -478,6 +690,24 @@
                 </div>
             </div>
         </div>
+        <div class="search-section">
+    <form action="/search" method="GET" class="search-container">
+        <div class="search-input-wrapper">
+            <span class="search-icon">🔍</span>
+            <input 
+                type="text" 
+                name="query" 
+                class="search-input" 
+                placeholder="Search products by name, category, or price..."
+                value="{{ request('query') }}"
+            >
+        </div>
+        <button type="submit" class="search-btn">
+            <span>🔎</span>
+            Search
+        </button>
+    </form>
+</div>
 
         <div class="products-header">
             <h2>All Products</h2>
@@ -529,6 +759,9 @@
                     @endforeach
                 </tbody>
             </table>
+        </div>
+        <div class="pagination_style">
+        {{$allproducts->links()}}
         </div>
     </main>
 </body>

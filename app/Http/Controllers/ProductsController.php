@@ -76,7 +76,7 @@ class ProductsController extends Controller
         return view('product_detail',compact('theproduct'));
     }
     public function showProducts(){
-    $allproducts = Products::orderBy('created_at','ASC')->get();
+    $allproducts = Products::orderBy('created_at','ASC')->paginate(5);
     return view('admin_products',compact('allproducts'));
     }
 }
