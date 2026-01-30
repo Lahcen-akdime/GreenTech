@@ -691,15 +691,16 @@
             </div>
         </div>
         <div class="search-section">
-    <form action="/search" method="GET" class="search-container">
+    <form action="{{route('products')}}" method="GET" class="search-container">
+        @csrf
+        @method('get')
         <div class="search-input-wrapper">
             <span class="search-icon">🔍</span>
             <input 
                 type="text" 
-                name="query" 
+                name="name" 
                 class="search-input" 
                 placeholder="Search products by name, category, or price..."
-                value="{{ request('query') }}"
             >
         </div>
         <button type="submit" class="search-btn">
