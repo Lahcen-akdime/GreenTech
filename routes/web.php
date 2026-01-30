@@ -6,8 +6,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/home', [ProductsController::class , 'index']);
 Route::get('/products', [ProductsController::class ,'showProducts'])->name('products');
-// Route::get('/search/{sear', [ProductsController::class ,'showProducts'])->name('search');
 Route::get('/create', [ProductsController::class , 'create']);
+Route::get('/filter/{id}', [ProductsController::class , 'filter']);
 Route::get('/show/{id}', [ProductsController::class , 'show']);
 Route::post('store', [ProductsController::class , 'store' ])->name('store');
 Route::put('/update/{id}', [ProductsController::class , 'update' ])->name('update');

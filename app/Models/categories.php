@@ -11,7 +11,7 @@ class categories extends Model
 {
     /** @use HasFactory<\Database\Factories\CategoriesFactory> */
     use HasFactory;
-    public function post():HasMany{
+    public function Products():HasMany{
         return $this-> HasMany(Products::class);
     }
 }

@@ -709,9 +709,22 @@
         </button>
     </form>
 </div>
-
         <div class="products-header">
             <h2>All Products</h2>
+            <div>
+                <a href="/products" class="add-product-btn">
+                    <span>🏷️</span>
+                   All Products
+                </a>
+            </div>
+            @foreach($categories as $categorie)
+             <div>
+                <a href="/filter/{{$categorie->id}}" class="add-product-btn">
+                    <span>🏷️</span>
+                   {{$categorie->title}}
+                </a>
+            </div>
+            @endforeach
             <a href="/create" class="add-product-btn">
                 <span>➕</span>
                 Add New Product
@@ -738,7 +751,7 @@
                         </td>
                         <td class="product-name-cell">{{$product->name}}</td>
                         <td class="product-price-cell">{{$product->price}}€</td>
-                        <td><span class="category-badge plantes">{{$product->categoryId}}</span></td>
+                        <td><span class="category-badge plantes">{{$product->category->title}}</span></td>
                         <td class="stock-cell">{{$product->stock}}</td>
                         <td>
                             <div class="action-buttons">
