@@ -1,17 +1,15 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 use App\Models\categories;
 use App\Models\Products ;
 use Illuminate\Support\Facades\DB;
-
 use function Laravel\Prompts\alert;
 
 class ProductsController extends Controller
 {
-    public static function index(){ 
+    public function index(){ 
     return view('admin_dashboard');
     }
     public function create(){ 
@@ -78,9 +76,5 @@ class ProductsController extends Controller
     $allproducts = Products::with('category')->where('categoryId',$id)->orderBy('created_at','ASC')->paginate(5);
     $categories = categories::all();
     return view('admin_products',compact('allproducts','categories'));
-    }
-    public function register(){
-        return view('register');
-
     }
 }
