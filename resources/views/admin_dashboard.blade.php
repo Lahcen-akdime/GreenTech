@@ -439,10 +439,10 @@
         </nav>
         
         <div class="sidebar-footer">
-            <button class="logout-button">
+            <a href="/logout" class="logout-button">
                 <span>🚪</span>
                 Logout
-            </button>
+            </a>
         </div>
     </aside>
 

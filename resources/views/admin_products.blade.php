@@ -7,7 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Karla:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <style>
+<style>
         :root {
             --forest-green: #1a4d2e;
             --moss-green: #4f772d;
@@ -673,8 +673,10 @@
         
         <div class="sidebar-footer">
             <button class="logout-button">
+               <a href="/logout" class="logout-button">
                 <span>🚪</span>
                 Logout
+                </a>
             </button>
         </div>
     </aside>
@@ -755,7 +757,7 @@
                         <td class="stock-cell">{{$product->stock}}</td>
                         <td>
                             <div class="action-buttons">
-                                <a class="action-btn edit-btn" href="/editProductForm/{{$product->id}}">
+                                <a class="action-btn edit-btn" href="/edit/{{$product->id}}">
                                     <span>✏️</span>
                                     Edit
                                 </a>

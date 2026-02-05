@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -43,7 +44,7 @@
             width: 1000px;
             height: 1000px;
             background: radial-gradient(ellipse at 30% 40%, rgba(144, 169, 85, 0.15) 0%, transparent 50%),
-                        radial-gradient(ellipse at 70% 60%, rgba(79, 119, 45, 0.1) 0%, transparent 50%);
+                radial-gradient(ellipse at 70% 60%, rgba(79, 119, 45, 0.1) 0%, transparent 50%);
             border-radius: 50%;
             z-index: 0;
             animation: morphGradient 25s ease-in-out infinite alternate;
@@ -58,7 +59,7 @@
             width: 800px;
             height: 800px;
             background: radial-gradient(ellipse at 60% 50%, rgba(216, 117, 127, 0.08) 0%, transparent 50%),
-                        radial-gradient(ellipse at 40% 60%, rgba(144, 169, 85, 0.12) 0%, transparent 50%);
+                radial-gradient(ellipse at 40% 60%, rgba(144, 169, 85, 0.12) 0%, transparent 50%);
             border-radius: 50%;
             z-index: 0;
             animation: morphGradient 30s ease-in-out infinite alternate-reverse;
@@ -66,8 +67,15 @@
         }
 
         @keyframes morphGradient {
-            0%, 100% { transform: translate(0, 0) scale(1) rotate(0deg); }
-            50% { transform: translate(40px, -40px) scale(1.1) rotate(5deg); }
+
+            0%,
+            100% {
+                transform: translate(0, 0) scale(1) rotate(0deg);
+            }
+
+            50% {
+                transform: translate(40px, -40px) scale(1.1) rotate(5deg);
+            }
         }
 
         /* Header with glassmorphism */
@@ -83,8 +91,15 @@
         }
 
         @keyframes slideDown {
-            from { transform: translateY(-100%); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
         }
 
         .header-container {
@@ -120,8 +135,15 @@
         }
 
         @keyframes leafPulse {
-            0%, 100% { transform: scale(1) rotate(0deg); }
-            50% { transform: scale(1.15) rotate(5deg); }
+
+            0%,
+            100% {
+                transform: scale(1) rotate(0deg);
+            }
+
+            50% {
+                transform: scale(1.15) rotate(5deg);
+            }
         }
 
         nav {
@@ -275,8 +297,15 @@
         }
 
         @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(40px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .hero-section h1 {
@@ -322,8 +351,15 @@
         }
 
         @keyframes fadeInLeft {
-            from { opacity: 0; transform: translateX(-40px); }
-            to { opacity: 1; transform: translateX(0); }
+            from {
+                opacity: 0;
+                transform: translateX(-40px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
         }
 
         .filter-sidebar h3 {
@@ -406,8 +442,13 @@
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
         }
 
         .product-card {
@@ -502,10 +543,23 @@
         }
 
         @keyframes heartBeat {
-            0%, 100% { transform: scale(1); }
-            25% { transform: scale(1.3); }
-            50% { transform: scale(0.9); }
-            75% { transform: scale(1.2); }
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            25% {
+                transform: scale(1.3);
+            }
+
+            50% {
+                transform: scale(0.9);
+            }
+
+            75% {
+                transform: scale(1.2);
+            }
         }
 
         .wishlist-heart.active {
@@ -635,6 +689,7 @@
         }
     </style>
 </head>
+
 <body>
     <header>
         <div class="header-container">
@@ -643,12 +698,13 @@
                 <a href="#" class="active">Catalogue</a>
                 <a href="#">À propos</a>
                 <a href="#">Contact</a>
+                <a href="/logout">Logout</a>
             </nav>
             <div class="header-actions">
                 <div class="search-bar">
                     <input type="text" placeholder="Rechercher des produits durables...">
                 </div>
-                <a href="client-wishlist.html" class="wishlist-btn">
+                <a href="/show" class="wishlist-btn">
                     ❤️ Favoris
                     <span class="wishlist-count">3</span>
                 </a>
@@ -675,115 +731,22 @@
             </aside>
 
             <div class="product-grid">
+                @foreach($products as $product)
                 <div class="product-card">
                     <div class="product-image-wrapper">
                         <div class="product-image">🌿</div>
-                        <div class="category-badge plantes">Plantes</div>
+                        <div class="category-badge plantes">{{$product->category->title}}</div>
                         <div class="wishlist-heart"></div>
                     </div>
                     <div class="product-info">
-                        <h3 class="product-name">Fougère d'Intérieur</h3>
-                        <div class="product-price">24.99€</div>
+                        <h3 class="product-name">{{$product->name}}</h3>
+                        <div class="product-price">{{$product->stock}}€</div>
                     </div>
                 </div>
-
-                <div class="product-card">
-                    <div class="product-image-wrapper">
-                        <div class="product-image">🌱</div>
-                        <div class="category-badge graines">Graines</div>
-                        <div class="wishlist-heart active"></div>
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-name">Graines Bio Tomates</h3>
-                        <div class="product-price">8.50€</div>
-                    </div>
-                </div>
-
-                <div class="product-card">
-                    <div class="product-image-wrapper">
-                        <div class="product-image">🔧</div>
-                        <div class="category-badge outils">Outils</div>
-                        <div class="wishlist-heart"></div>
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-name">Sécateur Ergonomique</h3>
-                        <div class="product-price">32.00€</div>
-                    </div>
-                </div>
-
-                <div class="product-card">
-                    <div class="product-image-wrapper">
-                        <div class="product-image">🌺</div>
-                        <div class="category-badge plantes">Plantes</div>
-                        <div class="wishlist-heart active"></div>
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-name">Orchidée Phalaenopsis</h3>
-                        <div class="product-price">45.00€</div>
-                    </div>
-                </div>
-
-                <div class="product-card">
-                    <div class="product-image-wrapper">
-                        <div class="product-image">🌾</div>
-                        <div class="category-badge graines">Graines</div>
-                        <div class="wishlist-heart"></div>
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-name">Graines Aromates Mix</h3>
-                        <div class="product-price">12.99€</div>
-                    </div>
-                </div>
-
-                <div class="product-card">
-                    <div class="product-image-wrapper">
-                        <div class="product-image">🪴</div>
-                        <div class="category-badge outils">Outils</div>
-                        <div class="wishlist-heart active"></div>
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-name">Pot Terre Cuite Bio</h3>
-                        <div class="product-price">18.50€</div>
-                    </div>
-                </div>
-
-                <div class="product-card">
-                    <div class="product-image-wrapper">
-                        <div class="product-image">🌵</div>
-                        <div class="category-badge plantes">Plantes</div>
-                        <div class="wishlist-heart"></div>
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-name">Cactus Collection</h3>
-                        <div class="product-price">29.99€</div>
-                    </div>
-                </div>
-
-                <div class="product-card">
-                    <div class="product-image-wrapper">
-                        <div class="product-image">🌻</div>
-                        <div class="category-badge graines">Graines</div>
-                        <div class="wishlist-heart"></div>
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-name">Graines Tournesol Bio</h3>
-                        <div class="product-price">6.75€</div>
-                    </div>
-                </div>
-
-                <div class="product-card">
-                    <div class="product-image-wrapper">
-                        <div class="product-image">🧤</div>
-                        <div class="category-badge outils">Outils</div>
-                        <div class="wishlist-heart"></div>
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-name">Gants de Jardinage</h3>
-                        <div class="product-price">15.00€</div>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </main>
 </body>
+
 </html>

@@ -1,27 +1,34 @@
 <?php
-
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\Client\FavoriteController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProductsController;
+use App\Http\Middleware\checkLoginMiddleware;
+use App\Http\Middleware\userMiddleware;
 use Illuminate\Support\Facades\Route;
 
-// crud :
-Route::get('/home', [ProductsController::class , 'index']);
-Route::get('/products', [ProductsController::class ,'showProducts'])->name('products');
-Route::get('/show/{id}', [ProductsController::class , 'show']);
-Route::post('store', [ProductsController::class , 'store' ])->name('store');
-Route::get('/create', [ProductsController::class , 'create']);
-Route::put('/update/{id}', [ProductsController::class , 'update' ])->name('update');
-Route::get('/destroy/{id}', [ProductsController::class , 'destroy']);
-Route::get('/editProductForm/{id}', [ProductsController::class , 'edit']);
+// Admin Space :
+Route::controller(ProductsController::class)->middleware(userMiddleware::class)->group(function () {
+Route::get('/products','showProducts')->name('products');
+Route::get('/show/{id}', 'show');
+Route::post('store', 'store' )->name('store');
+Route::get('/create', 'create');
+Route::put('/update/{id}', 'update' )->name('update');
+Route::get('/destroy/{id}', 'destroy');
+Route::get('/filter/{id}','filter');
+Route::get('/edit/{id}', 'edit');
+Route::get('/home', 'index');
+});
 
-// Filter :
-Route::get('/filter/{id}', [ProductsController::class , 'filter']);
+// Public Space :
+Route::controller(LoginController::class)->group(function () {
+Route::get('/logout','logout');
+Route::get('/','index');
+Route::post('/registerUser','store')->name('registerUser');
+Route::get('/index','show')->name('index');
+Route::post('/home','login')->name('login')->middleware(checkLoginMiddleware::class);
+});
 
-// Register :
-Route::get('/', [LoginController::class , 'index']);
-Route::post('/registerUser', [LoginController::class , 'store'])->name('registerUser');
-Route::get('/index', [LoginController::class , 'show']);
-
-Route::post('/login', [LoginController::class , 'login'])->name('login');
-//Login :
+// Client Space :
+Route::controller(FavoriteController::class)->middleware(checkLoginMiddleware::class)->group(function () {
+Route::get('/show', 'show');
+});

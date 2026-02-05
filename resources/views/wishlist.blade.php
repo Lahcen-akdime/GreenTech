@@ -602,11 +602,11 @@
         <div class="header-container">
             <a href="client-catalogue.html" class="logo">GreenTech Solutions</a>
             <nav>
-                <a href="client-catalogue.html">Catalogue</a>
+                <a href="/index">Catalogue</a>
                 <a href="#" class="active">Favoris</a>
                 <a href="#">Contact</a>
             </nav>
-            <a href="client-catalogue.html" class="back-to-catalogue">
+            <a href="/" class="back-to-catalogue">
                 ← Retour au Catalogue
             </a>
         </div>
@@ -617,17 +617,6 @@
             <div class="wishlist-hero-icon">❤️</div>
             <h1>Mes Produits Favoris</h1>
             <p>Votre collection personnelle de produits durables qui vous inspirent</p>
-            
-            <div class="wishlist-stats">
-                <div class="stat-item">
-                    <div class="stat-value">3</div>
-                    <div class="stat-label">Favoris</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-value">87.48€</div>
-                    <div class="stat-label">Valeur Totale</div>
-                </div>
-            </div>
         </section>
 
         <div class="wishlist-grid">
