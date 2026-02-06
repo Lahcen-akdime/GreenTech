@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Client\FavoriteController;
 use App\Http\Helpers\Validator;
 use App\Models\User;
+use FFI;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -12,7 +13,7 @@ class LoginController extends Controller
 {
     public function store(Request $request){
     Validator::RegisterValidator($request);
-    User::create(array_merge($request->all(),['role' => 'client']));
+    User::create(array_merge($request->all(),['role' => 'admin']));
     return view('login');
         }
         public function index(){
@@ -26,12 +27,10 @@ class LoginController extends Controller
                     $credentials = ['email'=>$request->email,'password'=>$request->password];
                    if(Auth::attempt($credentials)){
                     if(Auth::user()->role=='admin'){
-                        $request->session()->regenerate();
                         return ProductsController::index();
                     }
                     else{
-                        $request->session()->regenerate();
-                        return FavoriteController::index(); 
+                        return $this->showProducts();
                     }
                     }
                     else{
@@ -41,5 +40,8 @@ class LoginController extends Controller
         public function logout(){
             Auth::logout();
             return to_route('index');
+        }
+        public function showProducts(){
+            return FavoriteController::index();
         }
 }

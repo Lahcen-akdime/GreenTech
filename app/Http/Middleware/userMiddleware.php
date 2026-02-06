@@ -18,7 +18,7 @@ class userMiddleware
     public function handle(Request $request, Closure $next): Response
     {
         $user = Auth::user();
-        if(Auth::check() && $user -> role=='client'){
+        if(Auth::check() && $user -> role=='admin'){
             return $next($request);
             }
         else{

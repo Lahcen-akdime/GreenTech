@@ -16,7 +16,7 @@ Route::put('/update/{id}', 'update' )->name('update');
 Route::get('/destroy/{id}', 'destroy');
 Route::get('/filter/{id}','filter');
 Route::get('/edit/{id}', 'edit');
-Route::get('/home', 'index');
+Route::get('/adminHome',[ProductsController::class, 'index'] );
 });
 
 // Public Space :
@@ -25,10 +25,13 @@ Route::get('/logout','logout');
 Route::get('/','index');
 Route::post('/registerUser','store')->name('registerUser');
 Route::get('/index','show')->name('index');
-Route::post('/home','login')->name('login')->middleware(checkLoginMiddleware::class);
+
+Route::post('/home','login')->name('login');
+Route::get('/home','showProducts')->name('home');
 });
 
 // Client Space :
 Route::controller(FavoriteController::class)->middleware(checkLoginMiddleware::class)->group(function () {
 Route::get('/show', 'show');
+Route::get('/like/{id}','toggle');
 });

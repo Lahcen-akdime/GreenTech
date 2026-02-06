@@ -424,7 +424,7 @@
         </div>
         
         <nav class="sidebar-nav">
-            <a href="#" class="nav-item active">
+            <a href="/adminHome" class="nav-item active">
                 <span class="nav-icon">📊</span>
                 <span>Dashboard</span>
             </a>
@@ -449,10 +449,11 @@
     <main class="main-content">
         <div class="top-bar">
             <h1>Dashboard</h1>
+            <h2>Welcome back {{$username}} !!</h2>
             <div class="admin-profile">
                 <div class="admin-avatar">A</div>
                 <div class="admin-info">
-                    <div class="admin-name">Admin User</div>
+                    <div class="admin-name">Admin</div>
                     <div class="admin-role">Administrator</div>
                 </div>
             </div>

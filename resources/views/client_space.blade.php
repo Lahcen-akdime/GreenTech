@@ -475,7 +475,7 @@
 
         .product-image {
             width: 100%;
-            height: 320px;
+            height: 280px;
             background: linear-gradient(135deg, var(--warm-beige), var(--soft-cream));
             display: flex;
             align-items: center;
@@ -495,7 +495,7 @@
             bottom: 0;
             left: 0;
             right: 0;
-            height: 60%;
+            height: 20%;
             background: linear-gradient(to top, rgba(255, 255, 255, 0.5), transparent);
             transition: opacity 0.5s ease;
         }
@@ -532,13 +532,13 @@
         }
 
         .wishlist-heart::before {
-            content: '🤍';
+            /* content: '🤍'; */
             font-size: 1.75rem;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .wishlist-heart.active::before {
-            content: '❤️';
+            /* content: '❤️'; */
             animation: heartBeat 0.6s ease;
         }
 
@@ -696,17 +696,15 @@
             <div class="logo">GreenTech Solutions</div>
             <nav>
                 <a href="#" class="active">Catalogue</a>
-                <a href="#">À propos</a>
-                <a href="#">Contact</a>
                 <a href="/logout">Logout</a>
             </nav>
+            <h4>Welcome {{$username}} !!</h4>
             <div class="header-actions">
                 <div class="search-bar">
                     <input type="text" placeholder="Rechercher des produits durables...">
                 </div>
                 <a href="/show" class="wishlist-btn">
                     ❤️ Favoris
-                    <span class="wishlist-count">3</span>
                 </a>
             </div>
         </div>
@@ -724,9 +722,9 @@
                 <div class="filter-group">
                     <h4>Filtrer par Type</h4>
                     <div class="filter-option active">Tous les Produits</div>
-                    <div class="filter-option">Plantes</div>
-                    <div class="filter-option">Graines</div>
-                    <div class="filter-option">Outils</div>
+                    <div class="filter-option active">Plantes</div>
+                    <div class="filter-option active">Graines</div>
+                    <div class="filter-option active">Outils</div>
                 </div>
             </aside>
 
@@ -736,7 +734,8 @@
                     <div class="product-image-wrapper">
                         <div class="product-image">🌿</div>
                         <div class="category-badge plantes">{{$product->category->title}}</div>
-                        <div class="wishlist-heart"></div>
+                        <a href="/like/{{$product->id}}" class="wishlist-heart">🤍</a>
+                        <!-- <div class="wishlist-hero-icon">❤️</div> -->
                     </div>
                     <div class="product-info">
                         <h3 class="product-name">{{$product->name}}</h3>

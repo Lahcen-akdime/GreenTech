@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\categories;
 use App\Models\Products ;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 use function Laravel\Prompts\alert;
@@ -12,7 +13,8 @@ use function Laravel\Prompts\alert;
 class ProductsController extends Controller
 {
     public static function index(){ 
-    return view('admin_dashboard');
+    $username = Auth::user()->name;
+    return view('admin_dashboard',compact('username'));
     }
     public function create(){ 
     $categories = categories::all();
@@ -69,10 +71,11 @@ class ProductsController extends Controller
         return view('product_detail',compact('theproduct'));
     }
     public function showProducts(){
+            $username = Auth::user()->name;
             $name = $_GET['name'] ?? '' ;
             $allproducts = Products::with('category')->where('name','LIKE','%'.$name.'%')->orderBy('created_at','ASC')->paginate(5);
             $categories = categories::all();
-            return view('admin_products',compact('allproducts','categories'));
+            return view('admin_products',compact('allproducts','categories','username'));
     }
     public function filter($id){
     $allproducts = Products::with('category')->where('categoryId',$id)->orderBy('created_at','ASC')->paginate(5);
